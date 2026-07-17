@@ -130,13 +130,46 @@
             background-color: var(--surface-color);
             border: 1px solid #30363d;
             border-radius: 8px;
-            padding: 1.5rem;
+            overflow: hidden; /* Keeps the zoomed image from spilling out of the card */
             transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
             transform: translateY(-5px);
             border-color: var(--accent-color);
+        }
+
+        /* Clickable Image Container */
+        .card-img-link {
+            display: block;
+            overflow: hidden; 
+            width: 100%;
+            height: 200px;
+            background-color: #0d1117; /* Fallback background color */
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        /* Subtle zoom effect when hovering over the image link */
+        .card-img-link:hover .project-img {
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+
+        /* Padding container for text content below image */
+        .card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
         .card h3 {
@@ -148,6 +181,7 @@
             color: var(--text-muted);
             margin-bottom: 1.5rem;
             font-size: 0.95rem;
+            flex-grow: 1;
         }
 
         .tags {
@@ -213,38 +247,56 @@
     <section id="projects">
         <h2>Featured Projects</h2>
         <div class="grid">
+            
             <!-- Project 1 -->
             <div class="card">
-                <h3>[Project A]</h3>
-                <p>[Description]</p>
-                <div class="tags">
-                    <span class="tag">C++</span>
-                    <span class="tag">Blueprints</span>
-                    <span class="tag">AI</span>
+                <!-- Change the href to your target URL and src to your local image path -->
+                <a href="https://www.pushgaming.com/games/play/bamboo-ways.html" target="_blank" class="card-img-link">
+                    <img src="images/BambooWays.png" alt="bamboo ways" class="project-img">
+                </a>
+                <div class="card-content">
+                    <h3>Cyber Heist (Unreal Engine)</h3>
+                    <p>A stealth-action prototype featuring custom AI sight-cones, a dynamic cover system, and integration with Unreal's Behavior Trees.</p>
+                    <div class="tags">
+                        <span class="tag">C++</span>
+                        <span class="tag">Blueprints</span>
+                        <span class="tag">AI</span>
+                    </div>
                 </div>
             </div>
             
             <!-- Project 2 -->
             <div class="card">
-                <h3>[Project B]</h3>
-                <p>[Description]</p>
-                <div class="tags">
-                    <span class="tag">C++</span>
-                    <span class="tag">OpenGL</span>
-                    <span class="tag">Graphics</span>
+                <a href="https://www.pushgaming.com/games/play/iron-phoenix.html" target="_blank" class="card-img-link">
+                    <img src="images/IronPhoenix.png" alt="iron phoenix" class="project-img">
+                </a>
+                <div class="card-content">
+                    <h3>Voxel Engine Builder</h3>
+                    <p>A custom-built voxel engine written from scratch in C++ and OpenGL. Features chunk-based generation, greedy meshing, and multithreaded terrain generation.</p>
+                    <div class="tags">
+                        <span class="tag">C++</span>
+                        <span class="tag">OpenGL</span>
+                        <span class="tag">Graphics</span>
+                    </div>
                 </div>
             </div>
 
             <!-- Project 3 -->
             <div class="card">
-                <h3>[Project C]</h3>
-                <p>[Description]</p>
-                <div class="tags">
-                    <span class="tag">C#</span>
-                    <span class="tag">Unity3D</span>
-                    <span class="tag">Physics</span>
+                <a href="https://www.pushgaming.com/games/play/triple-rampage.html" target="_blank" class="card-img-link">
+                    <img src="images/TripleRampage.png" alt="triple rampage" class="project-img">
+                </a>
+                <div class="card-content">
+                    <h3>Neon Racer (Unity)</h3>
+                    <p>An arcade racing game featuring custom vehicle physics, arcade drifting mechanics, and a spline-based track generator.</p>
+                    <div class="tags">
+                        <span class="tag">C#</span>
+                        <span class="tag">Unity3D</span>
+                        <span class="tag">Physics</span>
+                    </div>
                 </div>
             </div>
+
         </div>
     </section>
 
