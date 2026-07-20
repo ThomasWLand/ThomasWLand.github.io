@@ -7,8 +7,9 @@
     <style>
         /* Base Styles & Dark Theme */
         :root {
-            --bg-color: #0d1117;
-            --surface-color: #161b22;
+            --bg-gradient-start: #0f141c;
+            --bg-gradient-end: #080b0f;
+            --surface-color: rgba(22, 27, 34, 0.7);
             --accent-color: #58a6ff;
             --text-main: #c9d1d9;
             --text-muted: #8b949e;
@@ -21,11 +22,29 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background-color: var(--bg-color);
+            background: radial-gradient(circle at 50% 30%, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+            background-attachment: fixed;
             color: var(--text-main);
             font-family: var(--font-family);
             line-height: 1.6;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Interactive Canvas Background */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
         }
 
         a {
@@ -43,11 +62,13 @@
             display: flex;
             justify-content: space-between;
             padding: 1.5rem 5%;
-            background-color: rgba(13, 17, 23, 0.95);
+            background-color: rgba(13, 17, 23, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid #30363d;
+            border-bottom: 1px solid rgba(48, 54, 61, 0.6);
         }
 
         nav .logo {
@@ -67,19 +88,20 @@
             padding: 5rem 5%;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
         }
 
         h2 {
             font-size: 2rem;
             margin-bottom: 2rem;
-            border-bottom: 2px solid var(--surface-color);
+            border-bottom: 2px solid #30363d;
             padding-bottom: 0.5rem;
             display: inline-block;
         }
 
         /* Hero Section */
         #hero {
-            height: 80vh;
+            height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -94,6 +116,7 @@
 
         #hero h1 span {
             color: var(--accent-color);
+            text-shadow: 0 0 20px rgba(88, 166, 255, 0.15);
         }
 
         #hero p {
@@ -105,18 +128,23 @@
 
         .btn {
             padding: 0.8rem 1.5rem;
-            background-color: var(--surface-color);
+            background-color: rgba(22, 27, 34, 0.8);
+            backdrop-filter: blur(4px);
             border: 1px solid #30363d;
             color: var(--text-main);
             border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
+            display: inline-block;
+            margin-right: 0.5rem;
         }
 
         .btn:hover {
             border-color: var(--accent-color);
-            background-color: #1f242c;
+            background-color: rgba(31, 36, 44, 0.9);
+            box-shadow: 0 0 15px rgba(88, 166, 255, 0.1);
+            transform: translateY(-2px);
         }
 
         /* Projects Grid */
@@ -128,10 +156,12 @@
 
         .card {
             background-color: var(--surface-color);
-            border: 1px solid #30363d;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(48, 54, 61, 0.7);
             border-radius: 8px;
             overflow: hidden;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
         }
@@ -139,15 +169,17 @@
         .card:hover {
             transform: translateY(-5px);
             border-color: var(--accent-color);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 15px rgba(88, 166, 255, 0.05);
         }
 
-        /* Clickable Image Container - EXPANDED */
+        /* Clickable Image Container */
         .card-img-link {
             display: block;
             overflow: hidden; 
             width: 100%;
-            height: 320px; /* Increased from 200px to make visuals prominent */
+            height: 240px; /* Adjusted down slightly from 320px for better vertical balance */
             background-color: #0d1117;
+            border-bottom: 1px solid rgba(48, 54, 61, 0.5);
         }
 
         .project-img {
@@ -163,9 +195,9 @@
             cursor: pointer;
         }
 
-        /* Text Content Container - COMPACTED */
+        /* Text Content Container */
         .card-content {
-            padding: 1.2rem; /* Reduced padding to give image more real estate */
+            padding: 1.2rem;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
@@ -173,14 +205,14 @@
 
         .card h3 {
             font-size: 1.15rem;
-            margin-bottom: 0.5rem; /* Tighter spacing */
+            margin-bottom: 0.5rem;
             color: #fff;
         }
 
         .card p {
             color: var(--text-muted);
             margin-bottom: 1.2rem;
-            font-size: 0.9rem; /* Clean, highly readable, but smaller typography */
+            font-size: 0.9rem;
             line-height: 1.5;
             flex-grow: 1;
         }
@@ -192,12 +224,12 @@
         }
 
         .tag {
-            background-color: #21262d;
+            background-color: rgba(33, 38, 45, 0.8);
             padding: 0.15rem 0.5rem;
             border-radius: 4px;
             font-size: 0.75rem;
             color: var(--accent-color);
-            border: 1px solid #30363d;
+            border: 1px solid rgba(48, 54, 61, 0.8);
         }
 
         /* Skills Section */
@@ -209,10 +241,18 @@
 
         .skill-badge {
             background-color: var(--surface-color);
+            backdrop-filter: blur(4px);
             padding: 0.8rem 1.5rem;
             border-radius: 30px;
             border: 1px solid #30363d;
             font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-badge:hover {
+            border-color: var(--accent-color);
+            transform: scale(1.05);
+            background-color: rgba(31, 36, 44, 0.6);
         }
 
         /* Footer */
@@ -222,10 +262,15 @@
             border-top: 1px solid #30363d;
             color: var(--text-muted);
             margin-top: 4rem;
+            background-color: rgba(8, 11, 15, 0.9);
+            position: relative;
         }
     </style>
 </head>
 <body>
+
+    <!-- Subtle Background Canvas Matrix -->
+    <canvas id="bg-canvas"></canvas>
 
     <nav>
         <div class="logo">Thomas Land</div>
@@ -238,20 +283,20 @@
 
     <section id="hero">
         <h1>I'm <span>Thomas Land</span>.<br>I engineer games.</h1>
-        <p>Building gameplay systems, AI, tools and performant game features while working closely with designers and artists.</p>
+        <p>Building gameplay systems, AI, tools, and performant game features while working closely with designers and artists.</p>
         <div>
             <a href="#projects" class="btn">View My Work</a>
             <a href="https://github.com/ThomasWLand" class="btn" target="_blank">GitHub</a>
         </div>
     </section>
 
-    <section id="proffesional">
-        <h2>Proffesional Work</h2>
+    <!-- Unified under the ID #projects so your navigation link hooks up correctly -->
+    <section id="projects">
+        <h2>Professional Work</h2>
         <div class="grid">
             
             <!-- Project 1 -->
             <div class="card">
-                <!-- Change the href to your target URL and src to your local image path -->
                 <a href="https://www.pushgaming.com/games/bamboo-ways.html" target="_blank" class="card-img-link">
                     <img src="images/BambooWays.png" alt="bamboo ways" class="project-img">
                 </a>
@@ -291,7 +336,7 @@
                 </a>
                 <div class="card-content">
                     <h3>Triple Rampage (Push Gaming)</h3>
-                    <p>A Monster themed online slot game, with each monster activating its own unique and exciting mechanics that can activate seperately or in combination</p>
+                    <p>A Monster themed online slot game, with each monster activating its own unique and exciting mechanics that can activate separately or in combination</p>
                     <div class="tags">
                         <span class="tag">Typescript</span>
                         <span class="tag">PIXI</span>
@@ -310,13 +355,12 @@
             
             <!-- Project 1 -->
             <div class="card">
-                <!-- Change the href to your target URL and src to your local image path -->
                 <a href="https://store.steampowered.com/app/2517000/BYLE/" target="_blank" class="card-img-link">
                     <img src="images/Byle.png" alt="byle" class="project-img">
                 </a>
                 <div class="card-content">
                     <h3>Byle (Steam)</h3>
-                    <p>University Group Project. 3d Roguelike. Lead a team of 7.</p>
+                    <p>University Group Project. 3D Roguelike. Led a team of 7.</p>
                     <div class="tags">
                         <span class="tag">C#</span>
                         <span class="tag">Unity 3D</span>
@@ -328,15 +372,14 @@
                 </div>
             </div>
 
-            <!-- Project 1 -->
+            <!-- Project 2 -->
             <div class="card">
-                <!-- Change the href to your target URL and src to your local image path -->
                 <a href="https://www.youtube.com/watch?v=LeXbSeBS4ls" target="_blank" class="card-img-link">
-                    <img src="images/PredatorPrey.png" alt="byle" class="project-img">
+                    <img src="images/PredatorPrey.png" alt="predator prey simulation" class="project-img">
                 </a>
                 <div class="card-content">
                     <h3>Evolution Simulator</h3>
-                    <p>University Project. Predator vs prey evolution simulation. Evolving creatures use senses and advanced descision making to navigate a procedural environment. Creatures must find food, water, sleep, secure mates, avoid predators, catch prey.</p>
+                    <p>University Project. Predator vs prey evolution simulation. Evolving creatures use senses and advanced decision making to navigate a procedural environment.</p>
                     <div class="tags">
                         <span class="tag">C#</span>
                         <span class="tag">Unity 3D</span>
@@ -344,17 +387,15 @@
                         <span class="tag">Observer pattern</span>
                         <span class="tag">State Machines</span>
                         <span class="tag">Procedural Generation</span>
-                        <span class="tag">Shaders</span>
                         <span class="tag">Gene System</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Project 1 -->
+            <!-- Project 3 -->
             <div class="card">
-                <!-- Change the href to your target URL and src to your local image path -->
                 <a href="https://www.youtube.com/watch?v=3p2yQ4udoTw&feature=youtu.be" target="_blank" class="card-img-link">
-                    <img src="images/DungeonGen.png" alt="byle" class="project-img">
+                    <img src="images/DungeonGen.png" alt="dungeon generation tool" class="project-img">
                 </a>
                 <div class="card-content">
                     <h3>Procedural Dungeon Generator</h3>
@@ -365,7 +406,7 @@
                         <span class="tag">Procedural Generation</span>
                         <span class="tag">Noise Sampling</span>
                         <span class="tag">Shaders</span>
-                        <span class="tag">cellular automata</span>
+                        <span class="tag">Cellular Automata</span>
                     </div>
                 </div>
             </div>
@@ -376,7 +417,7 @@
     <section id="skills">
         <h2>Tech Stack & Experience</h2>
         <div class="skills-container">
-            <span class="skill-badge">Typescript</span>
+            <span class="skill-badge">TypeScript</span>
             <span class="skill-badge">React</span>
             <span class="skill-badge">Debugging & Breakpoints</span>
             <span class="skill-badge">Draw Call Optimisation (Spector)</span>
@@ -401,5 +442,64 @@
         <p>© 2026 Thomas Land.</p>
     </footer>
 
+    <script>
+        // High-Performance Ambient Particle Background
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        const particleCount = 45;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.reset();
+                this.y = Math.random() * canvas.height; // Spread initially across height
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + 10;
+                this.size = Math.random() * 1.5 + 0.5;
+                this.speedY = Math.random() * 0.3 + 0.1;
+                this.alpha = Math.random() * 0.4 + 0.1;
+            }
+            update() {
+                this.y -= this.speedY;
+                if (this.y < -10) {
+                    this.reset();
+                }
+            }
+            draw() {
+                ctx.fillStyle = `rgba(88, 166, 255, ${this.alpha})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+    </script>
 </body>
 </html>
