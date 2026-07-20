@@ -172,28 +172,43 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 15px rgba(88, 166, 255, 0.05);
         }
 
-        /* Clickable Image Container */
+        /* Clickable Image Containers with CSS Switch */
         .card-img-link {
             display: block;
-            overflow: hidden; 
             width: 100%;
-            height: 240px; /* Adjusted down slightly from 320px for better vertical balance */
+            height: 240px;
             background-color: #0d1117;
             border-bottom: 1px solid rgba(48, 54, 61, 0.5);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: transform 0.3s ease, background-image 0.1s ease;
         }
 
-        .project-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .card-img-link:hover .project-img {
-            transform: scale(1.04);
+        .card-img-link:hover {
+            transform: scale(1.02);
             cursor: pointer;
         }
+
+        /* Dynamic Image / GIF assignments using custom CSS classes */
+        .img-bamboo       { background-image: url('images/BambooWays.png'); }
+        .img-bamboo:hover { background-image: url('gifs/bambooWays.gif'); }
+
+        .img-phoenix       { background-image: url('images/IronPhoenix.png'); }
+        .img-phoenix:hover { background-image: url('gifs/IronPhoenix.gif'); }
+
+        .img-rampage       { background-image: url('images/TripleRampage.png'); }
+        .img-rampage:hover { background-image: url('gifs/tripleRampage.gif'); }
+
+        .img-byle       { background-image: url('images/Byle.png'); }
+        .img-byle:hover { background-image: url('gifs/Byle.gif'); }
+
+        .img-evolution       { background-image: url('images/PredatorPrey.png'); }
+        .img-evolution:hover { background-image: url('gifs/PredatorPrey.gif'); }
+
+        .img-dungeon       { background-image: url('images/DungeonGen.png'); }
+        .img-dungeon:hover { background-image: url('gifs/dungeonGen.gif'); }
+
 
         /* Text Content Container */
         .card-content {
@@ -269,7 +284,6 @@
 </head>
 <body>
 
-    <!-- Subtle Background Canvas Matrix -->
     <canvas id="bg-canvas"></canvas>
 
     <nav>
@@ -290,16 +304,14 @@
         </div>
     </section>
 
-    <!-- Unified under the ID #projects so your navigation link hooks up correctly -->
     <section id="projects">
         <h2>Professional Work</h2>
         <div class="grid">
             
             <!-- Project 1 -->
             <div class="card">
-                <a href="https://www.pushgaming.com/games/bamboo-ways.html" target="_blank" class="card-img-link">
-                    <img src="images/BambooWays.png" alt="bamboo ways" class="project-img">
-                </a>
+                <!-- Note: The <img> tag was removed, replaced by the helper classes (.img-bamboo etc) -->
+                <a href="https://www.pushgaming.com/games/bamboo-ways.html" target="_blank" class="card-img-link img-bamboo" aria-label="Bamboo Ways game link"></a>
                 <div class="card-content">
                     <h3>Bamboo Ways (Push Gaming)</h3>
                     <p>A Chinese themed online slot game, with a dynamic grid size that changes as the game plays</p>
@@ -314,9 +326,7 @@
             
             <!-- Project 2 -->
             <div class="card">
-                <a href="https://www.pushgaming.com/games/iron-phoenix.html" target="_blank" class="card-img-link">
-                    <img src="images/IronPhoenix.png" alt="iron phoenix" class="project-img">
-                </a>
+                <a href="https://www.pushgaming.com/games/iron-phoenix.html" target="_blank" class="card-img-link img-phoenix" aria-label="Iron Phoenix game link"></a>
                 <div class="card-content">
                     <h3>Iron Phoenix (Push Gaming)</h3>
                     <p>A Phoenix themed online slot game, featuring a large additional slot machine that can pay out big prizes and activate additional mechanics</p>
@@ -331,9 +341,7 @@
 
             <!-- Project 3 -->
             <div class="card">
-                <a href="https://www.pushgaming.com/games/triple-rampage.html" target="_blank" class="card-img-link">
-                    <img src="images/TripleRampage.png" alt="triple rampage" class="project-img">
-                </a>
+                <a href="https://www.pushgaming.com/games/triple-rampage.html" target="_blank" class="card-img-link img-rampage" aria-label="Triple Rampage game link"></a>
                 <div class="card-content">
                     <h3>Triple Rampage (Push Gaming)</h3>
                     <p>A Monster themed online slot game, with each monster activating its own unique and exciting mechanics that can activate separately or in combination</p>
@@ -355,9 +363,7 @@
             
             <!-- Project 1 -->
             <div class="card">
-                <a href="https://store.steampowered.com/app/2517000/BYLE/" target="_blank" class="card-img-link">
-                    <img src="images/Byle.png" alt="byle" class="project-img">
-                </a>
+                <a href="https://store.steampowered.com/app/2517000/BYLE/" target="_blank" class="card-img-link img-byle" aria-label="Byle game link"></a>
                 <div class="card-content">
                     <h3>Byle (Steam)</h3>
                     <p>University Group Project. 3D Roguelike. Led a team of 7.</p>
@@ -374,9 +380,7 @@
 
             <!-- Project 2 -->
             <div class="card">
-                <a href="https://www.youtube.com/watch?v=LeXbSeBS4ls" target="_blank" class="card-img-link">
-                    <img src="images/PredatorPrey.png" alt="predator prey simulation" class="project-img">
-                </a>
+                <a href="https://www.youtube.com/watch?v=LeXbSeBS4ls" target="_blank" class="card-img-link img-evolution" aria-label="Evolution simulator video link"></a>
                 <div class="card-content">
                     <h3>Evolution Simulator</h3>
                     <p>University Project. Predator vs prey evolution simulation. Evolving creatures use senses and advanced decision making to navigate a procedural environment.</p>
@@ -394,9 +398,7 @@
 
             <!-- Project 3 -->
             <div class="card">
-                <a href="https://www.youtube.com/watch?v=3p2yQ4udoTw&feature=youtu.be" target="_blank" class="card-img-link">
-                    <img src="images/DungeonGen.png" alt="dungeon generation tool" class="project-img">
-                </a>
+                <a href="https://www.youtube.com/watch?v=3p2yQ4udoTw&feature=youtu.be" target="_blank" class="card-img-link img-dungeon" aria-label="Dungeon generator video link"></a>
                 <div class="card-content">
                     <h3>Procedural Dungeon Generator</h3>
                     <p>University Project. Dungeon generation tool where every stage of generation can be modified in real time, such as room shapes, map elevation and connecting corridors.</p>
@@ -443,7 +445,6 @@
     </footer>
 
     <script>
-        // High-Performance Ambient Particle Background
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
 
@@ -460,7 +461,7 @@
         class Particle {
             constructor() {
                 this.reset();
-                this.y = Math.random() * canvas.height; // Spread initially across height
+                this.y = Math.random() * canvas.height;
             }
             reset() {
                 this.x = Math.random() * canvas.width;
