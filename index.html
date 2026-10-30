@@ -96,7 +96,31 @@
             margin-bottom: 2rem;
             border-bottom: 2px solid #30363d;
             padding-bottom: 0.5rem;
-            display: inline-block;
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h3 {
+            text-align: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        p {
+            text-align: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 0;
+            justify-self: center;
+            align-self: center;
         }
 
         /* Hero Section */
@@ -105,13 +129,21 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
         }
 
         #hero h1 {
             font-size: 4rem;
             line-height: 1.1;
             margin-bottom: 1rem;
+        }
+
+        #hero h3 {
+            font-size: 1.5rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+            text-shadow: 0 0 20px rgba(88, 166, 255, 0.15);
         }
 
         #hero h1 span {
@@ -124,6 +156,11 @@
             color: var(--text-muted);
             max-width: 600px;
             margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
 
         .btn {
@@ -136,8 +173,12 @@
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: inline-block;
+            display: block;
             margin-right: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .btn:hover {
@@ -216,6 +257,8 @@
             display: flex;
             flex-direction: column;
             flex-grow: 1;
+            justify-items: center;
+            align-items: center;
         }
 
         .card h3 {
@@ -236,6 +279,10 @@
             display: flex;
             gap: 0.4rem;
             flex-wrap: wrap;
+            justify-items: center;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
         }
 
         .tag {
@@ -252,6 +299,10 @@
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
+            align-content: center;
+            justify-items: center;
+            align-items: center;
+            justify-content: center;
         }
 
         .skill-badge {
@@ -342,11 +393,11 @@
     </nav>
 
     <section id="hero">
-        <h1>I'm <span>Thomas Land</span>.<br>I engineer games.</h1>
+        <h1>Hi, I'm<span> Thomas Land</h1>
+        <h3>Game Developer</span></h3>
         <p>Building gameplay systems, AI, tools, and performant game features while working closely with designers and artists.</p>
         <div>
             <a href="#projects" class="btn">View My Work</a>
-            <a href="https://github.com/ThomasWLand" class="btn" target="_blank">GitHub</a>
         </div>
     </section>
 
@@ -362,7 +413,7 @@
                 <a href="https://www.pushgaming.com/games/bamboo-ways.html" target="_blank" class="card-img-link img-bamboo" aria-label="Bamboo Ways game link"></a>
                 <div class="card-content">
                     <h3>Bamboo Ways (Push Gaming)</h3>
-                    <p>A Chinese themed online slot game, with a dynamic grid size that changes as the game plays</p>
+                    <p>Bamboo Ways by Push Gaming is a high-volatility, East Asian-themed online slot set across a 6-reel grid. Cascading wins unlock up to 6 rows and 46,656 ways to win. It features Mystery Symbols, Golden Bamboo instant prizes, Expanding Wilds, and and Free Spins.</p>
                     <div class="tags">
                         <span class="tag">Typescript</span>
                         <span class="tag">PIXI</span>
@@ -377,7 +428,7 @@
                 <a href="https://www.pushgaming.com/games/iron-phoenix.html" target="_blank" class="card-img-link img-phoenix" aria-label="Iron Phoenix game link"></a>
                 <div class="card-content">
                     <h3>Iron Phoenix (Push Gaming)</h3>
-                    <p>A Phoenix themed online slot game, featuring a large additional slot machine that can pay out big prizes and activate additional mechanics</p>
+                    <p>Iron Phoenix by Push Gaming is a low-to-medium volatility, Chinese mythology-themed slot set on a 5x3 grid with 20 paylines. It features the Phoenix Reel mechanic for instant cash prizes, free spins with leveling multipliers, and four jackpot tiers.</p>
                     <div class="tags">
                         <span class="tag">Typescript</span>
                         <span class="tag">PIXI</span>
@@ -392,7 +443,7 @@
                 <a href="https://www.pushgaming.com/games/triple-rampage.html" target="_blank" class="card-img-link img-rampage" aria-label="Triple Rampage game link"></a>
                 <div class="card-content">
                     <h3>Triple Rampage (Push Gaming)</h3>
-                    <p>A Monster themed online slot game, with each monster activating its own unique and exciting mechanics that can activate separately or in combination</p>
+                    <p>Triple Rampage by Push Gaming is a kaiju-themed, 6-reel slot offering 4,096 to 46,656 ways to win. It features instant prizes, fixed jackpots, and edge-reel collectors. Players can collect tokens to trigger three unique Free Spins modes—or combine them in Max Mayhem Free Spins.</p>
                     <div class="tags">
                         <span class="tag">Typescript</span>
                         <span class="tag">PIXI</span>
@@ -417,7 +468,7 @@
                 <a href="https://store.steampowered.com/app/2517000/BYLE/" target="_blank" class="card-img-link img-byle" aria-label="Byle game link"></a>
                 <div class="card-content">
                     <h3>Byle (Steam)</h3>
-                    <p>University Group Project. 3D Roguelike. Led a team of 7.</p>
+                    <p>Lead developer for a University Group Project. an action roguelike top-down shooter set in a corrupted city. Players battle over 50 unique, mutated enemy types and colossal bosses across procedurally generated levels. Featuring multiple unlockable characters, power-ups, diverse weapons, and a wave-based Colosseum mode.</p>
                     <div class="tags">
                         <span class="tag">C#</span>
                         <span class="tag">Unity 3D</span>
@@ -500,6 +551,7 @@
         <p>I'm currently looking for new opportunities in gameplay and systems programming.</p>
         <br>
         <a href="mailto:thomasland2001@gmail.com" class="btn">Email Me</a>
+        <br>
         <a href="https://www.linkedin.com/in/thomas-land-41789026b/" class="btn" target="_blank">LinkedIn</a>
     </section>
 
