@@ -302,76 +302,75 @@
         }
 
         /* Skills Section */
-        .skills-container {
+        .skills-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-column {
+            background-color: var(--surface-color);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(48, 54, 61, 0.7);
+            border-radius: 8px;
+            padding: 1.5rem;
             display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            align-content: center;
-            justify-items: center;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
+        }
+
+        .skill-column h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+            border-bottom: 1px solid rgba(48, 54, 61, 0.8);
+            padding-bottom: 0.5rem;
+            width: 100%;
+        }
+
+        .skill-column .skills-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            width: 100%;
+            align-items: center;
         }
 
         .skill-badge {
-            background-color: var(--surface-color);
+            background-color: rgba(13, 17, 23, 0.6);
             backdrop-filter: blur(4px);
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
             border: 1px solid #30363d;
             font-weight: bold;
+            font-size: 0.9rem;
+            width: 100%;
+            text-align: center;
             transition: all 0.3s ease;
         }
-        
+
         .skill-badge:hover {
             border-color: var(--accent-color);
-            transform: scale(1.05);
-            background-color: rgba(31, 36, 44, 0.6);
+            transform: translateY(-2px);
+            background-color: rgba(31, 36, 44, 0.8);
         }
 
-        .skill-badge.a {
-            border-color: rgba(49, 120, 198, 0.6);
-            color: #3178c6;
-        }
-        .skill-badge.a:hover {
-            background-color: rgba(49, 120, 198, 0.15);
-            box-shadow: 0 0 15px rgba(49, 120, 198, 0.3);
-        }
+        .skill-badge.a { border-color: rgba(49, 120, 198, 0.6); color: #3178c6; }
+        .skill-badge.a:hover { background-color: rgba(49, 120, 198, 0.15); box-shadow: 0 0 12px rgba(49, 120, 198, 0.3); }
 
-        .skill-badge.b {
-            border-color: rgba(97, 218, 251, 0.6);
-            color: #61dafb;
-        }
-        .skill-badge.b:hover {
-            background-color: rgba(97, 218, 251, 0.15);
-            box-shadow: 0 0 15px rgba(97, 218, 251, 0.3);
-        }
+        .skill-badge.b { border-color: rgba(97, 218, 251, 0.6); color: #61dafb; }
+        .skill-badge.b:hover { background-color: rgba(97, 218, 251, 0.15); box-shadow: 0 0 12px rgba(97, 218, 251, 0.3); }
 
-        .skill-badge.c {
-            border-color: rgba(240, 136, 62, 0.6);
-            color: #f0883e;
-        }
-        .skill-badge.c:hover {
-            background-color: rgba(240, 136, 62, 0.15);
-            box-shadow: 0 0 15px rgba(240, 136, 62, 0.3);
-        }
+        .skill-badge.c { border-color: rgba(240, 136, 62, 0.6); color: #f0883e; }
+        .skill-badge.c:hover { background-color: rgba(240, 136, 62, 0.15); box-shadow: 0 0 12px rgba(240, 136, 62, 0.3); }
 
-        .skill-badge.d {
-            border-color: rgba(210, 153, 34, 0.6);
-            color: #d29922;
-        }
-        .skill-badge.d:hover {
-            background-color: rgba(210, 153, 34, 0.15);
-            box-shadow: 0 0 15px rgba(210, 153, 34, 0.3);
-        }
+        .skill-badge.d { border-color: rgba(210, 153, 34, 0.6); color: #d29922; }
+        .skill-badge.d:hover { background-color: rgba(210, 153, 34, 0.15); box-shadow: 0 0 12px rgba(210, 153, 34, 0.3); }
 
-        .skill-badge.e {
-            border-color: rgba(163, 113, 247, 0.6);
-            color: #a371f7;
-        }
-        .skill-badge.e:hover {
-            background-color: rgba(163, 113, 247, 0.15);
-            box-shadow: 0 0 15px rgba(163, 113, 247, 0.3);
-        }
+        .skill-badge.e { border-color: rgba(163, 113, 247, 0.6); color: #a371f7; }
+        .skill-badge.e:hover { background-color: rgba(163, 113, 247, 0.15); box-shadow: 0 0 12px rgba(163, 113, 247, 0.3); }
 
         /* Footer */
         footer {
@@ -608,25 +607,60 @@
         </div>
     </section>
 
-    <section id="skills">
-        <h2>Tech Stack & Experience</h2>
-        <div class="skills-container">
-            <span class="skill-badge a">TypeScript</span>
-            <span class="skill-badge a">PixiJs</span>
-            <span class="skill-badge a">C#</span>
-            <span class="skill-badge a">Unity</span>
-            <span class="skill-badge a">Unreal</span>
-            <span class="skill-badge a">CSS / HTML</span>
-            <span class="skill-badge a">React</span>
-            <span class="skill-badge b">Shaders</span>
-            <span class="skill-badge b">Spine</span>
-            <span class="skill-badge c">Git</span> 
-            <span class="skill-badge c">Podman</span>
-            <span class="skill-badge c">Jira</span>
-            <span class="skill-badge c">Clickup</span>
-            <span class="skill-badge d">Gemini / Co-Pilot / Claude</span>
-            <span class="skill-badge e">Game AI</span>
-            <span class="skill-badge e">CI-CD</span>
+     <section id="skills">
+        <h2>Skills & Tools</h2>
+        <div class="skills-columns">
+            <div class="skill-column">
+                <h3>Languages</h3>
+                <div class="skills-list">
+                    <span class="skill-badge a">JavaScript</span>
+                    <span class="skill-badge a">TypeScript</span>
+                    <span class="skill-badge a">C#</span>
+                    <span class="skill-badge a">C++</span>
+                    <span class="skill-badge a">Python</span>
+                    <span class="skill-badge a">HTML / CSS</span>
+                    <span class="skill-badge a">HLSL</span>
+                </div>
+            </div>
+
+            <div class="skill-column">
+                <h3>Front End</h3>
+                <div class="skills-list">
+                    <span class="skill-badge b">React</span>
+                </div>
+            </div>
+
+            <div class="skill-column">
+                <h3>Game Dev</h3>
+                <div class="skills-list">
+                    <span class="skill-badge c">PixiJs</span>
+                    <span class="skill-badge c">Unity</span>
+                    <span class="skill-badge c">Unreal</span>
+                    <span class="skill-badge c">Shaders</span>
+                    <span class="skill-badge c">Spine</span>
+                </div>
+            </div>
+
+            <div class="skill-column">
+                <h3>DevOps</h3>
+                <div class="skills-list">
+                    <span class="skill-badge d">Git</span>
+                    <span class="skill-badge d">CI-CD</span>
+                    <span class="skill-badge d">Docker/Podman</span>
+                    <span class="skill-badge d">Jira</span>
+                    <span class="skill-badge d">Clickup</span>
+                    <span class="skill-badge d">Agile/Scrum</span>
+                </div>
+            </div>
+
+            <div class="skill-column">
+                <h3>AI Tools</h3>
+                <div class="skills-list">
+                    <span class="skill-badge e">Gemini</span>
+                    <span class="skill-badge e">Claude</span>
+                    <span class="skill-badge e">Github CoPilot</span>
+                </div>
+            </div>
         </div>
     </section>
 
